@@ -1,6 +1,7 @@
 package gns.diecastfinder.wanted.services;
 
 import gns.diecastfinder.wanted.web.model.WantedModelDto;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +9,12 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class WantedServiceImpl implements WantedService {
 
     @Override
     public WantedModelDto getWantedModelById(UUID id) {
+        log.debug("Showing a model...");
         return WantedModelDto.builder()
                 .id(id)
                 .name("McLaren P1")
@@ -24,6 +27,7 @@ public class WantedServiceImpl implements WantedService {
 
     @Override
     public WantedModelDto saveNewModel(WantedModelDto wanted) {
+        log.debug("Saving a model...");
         return WantedModelDto.builder()
                 .id(UUID.randomUUID())
                 .build();
@@ -31,6 +35,7 @@ public class WantedServiceImpl implements WantedService {
 
     @Override
     public WantedModelDto updateModel(UUID id, WantedModelDto wanted) {
+        log.debug("Updating a model...");
         return WantedModelDto.builder()
                 .id(id)
                 .name(wanted.getName())
