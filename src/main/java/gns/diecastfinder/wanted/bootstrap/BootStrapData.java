@@ -32,6 +32,7 @@ public class BootStrapData implements CommandLineRunner {
                 .maxPrice(1000)
                 .minPrice(250)
                 .currency("PLN")
+                .active(true)
                 .build();
 
         repository.save(wm2);

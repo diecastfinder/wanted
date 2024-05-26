@@ -1,4 +1,4 @@
-package gns.diecastfinder.wanted.web.controller;
+package gns.diecastfinder.wanted.web.api.controller;
 
 import gns.diecastfinder.wanted.services.WantedService;
 import gns.diecastfinder.wanted.web.model.WantedModelDto;
