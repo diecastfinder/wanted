@@ -16,7 +16,7 @@ public class WantedUiController {
 
     @RequestMapping("/wanted-models")
     public String getWantedModels(Model model) {
-        model.addAttribute("wantedModels", wantedModelRepository.findAll());
+        model.addAttribute("wantedModels", wantedModelRepository.findByActiveTrue());
         return "wantedmodels/list";
     }
 
