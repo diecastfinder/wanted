@@ -1,7 +1,7 @@
-package gns.diecastfinder.wanted.web.mappers;
+package org.diecastfinder.wanted.web.mappers;
 
-import gns.diecastfinder.wanted.domain.WantedModel;
-import gns.diecastfinder.wanted.web.model.WantedModelDto;
+import org.diecastfinder.wanted.domain.WantedModel;
+import org.diecastfinder.wanted.web.model.WantedModelDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

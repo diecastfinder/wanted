@@ -1,7 +1,7 @@
-package gns.diecastfinder.wanted.bootstrap;
+package org.diecastfinder.wanted.bootstrap;
 
-import gns.diecastfinder.wanted.domain.WantedModel;
-import gns.diecastfinder.wanted.repositories.WantedModelRepository;
+import org.diecastfinder.wanted.domain.WantedModel;
+import org.diecastfinder.wanted.repositories.WantedModelRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

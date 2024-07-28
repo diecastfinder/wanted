@@ -1,6 +1,6 @@
-package gns.diecastfinder.wanted.services;
+package org.diecastfinder.wanted.services;
 
-import gns.diecastfinder.wanted.web.model.WantedModelDto;
+import org.diecastfinder.wanted.web.model.WantedModelDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

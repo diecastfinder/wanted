@@ -1,6 +1,6 @@
-package gns.diecastfinder.wanted.repositories;
+package org.diecastfinder.wanted.repositories;
 
-import gns.diecastfinder.wanted.domain.WantedModel;
+import org.diecastfinder.wanted.domain.WantedModel;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
