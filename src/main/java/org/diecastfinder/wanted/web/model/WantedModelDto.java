@@ -1,4 +1,4 @@
-package gns.diecastfinder.wanted.web.model;
+package org.diecastfinder.wanted.web.model;
 
 import lombok.*;
 import lombok.experimental.Accessors;

@@ -1,6 +1,6 @@
-package gns.diecastfinder.wanted.services;
+package org.diecastfinder.wanted.services;
 
-import gns.diecastfinder.wanted.web.model.WantedModelDto;
+import org.diecastfinder.wanted.web.model.WantedModelDto;
 
 import java.util.UUID;
 

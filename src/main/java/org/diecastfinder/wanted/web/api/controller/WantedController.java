@@ -1,7 +1,7 @@
-package gns.diecastfinder.wanted.web.api.controller;
+package org.diecastfinder.wanted.web.api.controller;
 
-import gns.diecastfinder.wanted.services.WantedService;
-import gns.diecastfinder.wanted.web.model.WantedModelDto;
+import org.diecastfinder.wanted.services.WantedService;
+import org.diecastfinder.wanted.web.model.WantedModelDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

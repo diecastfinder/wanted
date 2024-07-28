@@ -1,4 +1,4 @@
-package gns.diecastfinder.wanted.domain;
+package org.diecastfinder.wanted.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

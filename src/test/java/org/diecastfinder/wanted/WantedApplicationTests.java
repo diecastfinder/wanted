@@ -1,4 +1,4 @@
-package gns.diecastfinder.wanted;
+package org.diecastfinder.wanted;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
