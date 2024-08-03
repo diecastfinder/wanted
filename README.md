@@ -7,7 +7,7 @@ H2 - in memory DB with devtools to have a h2-console
 after running the service open http://localhost:port/h2-console
 
 ### Deployment: artifacts preparation
-* Docker - to make a container out of service from DevOps point of view.
+* Docker - to make a container out of service from DevOps point of view.<br>
 To build docker image use command:
 `C:\Projects\DiecastFinder2\wanted> docker build -f .\src\main\java\docker\Dockerfile -t diecastfinder-wanted .`
 <br>To run build use command:
@@ -26,6 +26,12 @@ To build docker image use command:
   * `--no-cache` - cache is turned off,<br>
     `-D --progress=plain` - print stdout to console<br>
     `C:\Projects\DiecastFinder2\wanted> docker -D build -f .\src\main\java\docker\Dockerfile -t diecastfinder-wanted --progress=plain --no-cache .`
+   
+
+* Run Docker from Maven and use properties - in order not to update dockerfile every time as you change version, same docker file for every project.<br>
+
+Plugin docker-maven-plugin from Fabric8 add docker jobs to mvn.<br>
+To build docker image from mvn: `mvn docker:build`
 
   
-* Docker is using Maven properties
+  
