@@ -1,0 +1,90 @@
+#version: '3.8'
+services:
+  jms:
+    image: apache/activemq-artemis
+    ports:
+      - 61616:61616
+      - 8161:8161
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+  eureka:
+    image: gennplus/dcf-eurekareganddiscovery
+    ports:
+      - 8761:8761
+  configserver:
+    image: gennplus/dcf-configserver
+    ports:
+      - 8888:8888
+    depends_on:
+      - eureka
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eurika:8761/eureka
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+  wanted:
+    image: gennplus/dcf-wanted
+    ports:
+      - 8082:8082
+    depends_on:
+      - eureka
+      - configserver
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eurika:8761/eureka
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+      SPRING_PROFILES_ACTIVE: local-discovery
+      SPRING_ZIPKIN_BASEURL: http://zipkin
+  kurier:
+    image: gennplus/dcf-kurier
+    ports:
+      - 8083:8083
+    depends_on:
+      - eureka
+      - configserver
+      - jms
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eurika:8761/eureka
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+      SPRING_PROFILES_ACTIVE: local-discovery
+      SPRING_ZIPKIN_BASEURL: http://zipkin
+      SPRING_ARTEMIS_HOST: jms
+  catalog:
+    image: gennplus/dcf-catalog
+    ports:
+      - 8086:8086
+    depends_on:
+      - eureka
+      - configserver
+      - jms
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eurika:8761/eureka
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+      SPRING_PROFILES_ACTIVE: local-discovery,mariadb
+      SPRING_ZIPKIN_BASEURL: http://zipkin
+      SPRING_ARTEMIS_HOST: jms
+  catalog-failover:
+    image: gennplus/dcf-catalog-failover
+    ports:
+      - 8087:8087
+    depends_on:
+      - eureka
+      - configserver
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eurika:8761/eureka
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+  gateway:
+    image: gennplus/dcf-gateway
+    ports:
+      - 9090:9090
+    depends_on:
+      - eureka
+      - configserver
+      - wanted
+      - kurier
+      - catalog
+      - catalog-failover
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eurika:8761/eureka
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+      SPRING_PROFILES_ACTIVE: local-discovery
+

@@ -10,4 +10,4 @@ COPY --from=builder ${project.artifactId}/${project.build.finalName}/dependencie
 COPY --from=builder ${project.artifactId}/${project.build.finalName}/spring-boot-loader/ ./
 COPY --from=builder ${project.artifactId}/${project.build.finalName}/snapshot-dependencies/ ./
 COPY --from=builder ${project.artifactId}/${project.build.finalName}/application/ ./
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
