@@ -13,6 +13,7 @@ services:
     image: gennplus/dcf-eurekareganddiscovery
     ports:
       - 8761:8761
+#  TBD fix config server issue: could not establish link between Eureka and others incl. Configserver
   configserver:
     image: gennplus/dcf-configserver
     ports:
@@ -20,7 +21,7 @@ services:
     depends_on:
       - eureka
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eurika:8761/eureka
+      EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka/
       EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
   wanted:
     image: gennplus/dcf-wanted
@@ -28,11 +29,12 @@ services:
       - 8082:8082
     depends_on:
       - eureka
-      - configserver
+#      - configserver
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eurika:8761/eureka
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://netflix:eureka@eureka:8761/eureka
       EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
-      SPRING_PROFILES_ACTIVE: local-discovery
+      SPRING_CLOUD_DISCOVERY_ENABLED: true
+      #      SPRING_PROFILES_ACTIVE: local-discovery
       SPRING_ZIPKIN_BASEURL: http://zipkin
   kurier:
     image: gennplus/dcf-kurier
