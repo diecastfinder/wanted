@@ -66,3 +66,16 @@ To build docker image from mvn: `mvn docker:build`
 * Create public repository on dockerhub and push image<br>
 `docker tag local-image:tagname new-repo:tagname`<br>
 `docker push new-repo:tagname` 
+
+## Log monitoring: ELK (Filebeat, Elasticsearch, Kibana)
+#### Source
+`src/main/docker/elk` have everything for running and configure elk logging<br>
+#### Setup 
+Setup is based on docker compose, in order to run elk do the following:<br>
+* cd to elk folder
+* run `docker-compose -f .\docker-compose-elk.yaml up -d`
+* in browser open http://localhost:5601/ (localhost server we provided for Kibana)<br> 
+and http://localhost:9200/ (Elasticsearch host server) to check if it's working fine.
+#### Add another microservice logs
+* open `docker-compose-elk.yaml` and add paths to `filebeat:volumes:`
+* open `filebeat.yml` and add paths to `filebeat.inputs:paths:`
