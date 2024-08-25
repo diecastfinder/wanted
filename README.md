@@ -76,6 +76,5 @@ Setup is based on docker compose, in order to run elk do the following:<br>
 * run `docker-compose -f .\docker-compose-elk.yaml up -d`
 * in browser open http://localhost:5601/ (localhost server we provided for Kibana)<br> 
 and http://localhost:9200/ (Elasticsearch host server) to check if it's working fine.
-#### Add another microservice logs
+#### Add another microservice logs and test results
 * open `docker-compose-elk.yaml` and add paths to `filebeat:volumes:`
-* open `filebeat.yml` and add paths to `filebeat.inputs:paths:`
