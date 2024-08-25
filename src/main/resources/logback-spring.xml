@@ -25,17 +25,17 @@
           <omitEmptyFields>true</omitEmptyFields>
           <pattern>
             {
-            "severity": "%level",
-            "service": "${springAppName:-}",
-            "trace": "%X{X-B3-TraceId:-}",
-            "span": "%X{X-B3-SpanId:-}",
-            "parent": "%X{X-B3-ParentSpanId:-}",
-            "exportable": "%X{X-Span-Export:-}",
-            "baggage": "%X{key:-}",
-            "pid": "${PID:-}",
-            "thread": "%thread",
-            "class": "%logger{40}",
-            "rest": "%message"
+              "severity": "%level",
+              "service": "${springAppName:-}",
+              "trace": "%X{X-B3-TraceId:-}",
+              "span": "%X{X-B3-SpanId:-}",
+              "parent": "%X{X-B3-ParentSpanId:-}",
+              "exportable": "%X{X-Span-Export:-}",
+              "baggage": "%X{key:-}",
+              "pid": "${PID:-}",
+              "thread": "%thread",
+              "class": "%logger{40}",
+              "rest": "%message"
             }
           </pattern>
         </pattern>
@@ -43,7 +43,19 @@
     </encoder>
   </appender>
 
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/${springAppName}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/${springAppName}.%d{yyyy-MM-dd}.log.tar.gz</fileNamePattern>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd'T'HH:mm:ss'Z'} - %m%n</pattern>
+    </encoder>
+  </appender>
+
   <root level="INFO">
     <appender-ref ref="jsonConsole"/>
+    <appender-ref ref="FILE"/>
   </root>
 </configuration>

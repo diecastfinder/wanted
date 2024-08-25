@@ -44,7 +44,10 @@ services:
     restart: always
     volumes:
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-      - /c/Projects/DiecastFinder2/wanted/target/surefire-reports:/var/log/wanted:ro
+#     Tests
+      - /c/Projects/DiecastFinder2/wanted/target/surefire-reports:/var/log/tests:ro
+#     Console logs
+      - /c/Projects/DiecastFinder2/DiecastFinder2/logs:/var/log/logs:ro
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
 #      ELASTICSEARCH_USERNAME: elastic
