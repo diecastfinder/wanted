@@ -58,5 +58,4 @@ public class WantedUiController {
         model.addAttribute("wantedModels", wantedModelRepository.findByActiveTrue());
         return "wantedmodels/list";
     }
-
 }

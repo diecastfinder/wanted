@@ -27,7 +27,7 @@ Thymeleaf for UI
 2. Run artemis container: docker run --detach --name mycontainer -p 61616:61616 -p 8161:8161 --rm apache/activemq-artemis:latest-alpine
 3. Run project eurekareganddiscovery, check http://localhost:8761
 4. Run [WantedApplication.java](src%2Fmain%2Fjava%2Forg%2Fdiecastfinder%2Fwanted%2FWantedApplication.java) .main().
-5. Open main page of UI 
+5. Open main page of UI http://localhost:8082/wanted-models
 
 ### Standalone in Docker
 
