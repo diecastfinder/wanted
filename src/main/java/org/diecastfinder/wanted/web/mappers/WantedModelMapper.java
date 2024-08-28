@@ -1,6 +1,6 @@
 package org.diecastfinder.wanted.web.mappers;
 
-import org.diecastfinder.wanted.domain.WantedModel;
+import org.diecastfinder.wanted.repositories.domain.WantedModel;
 import org.diecastfinder.wanted.web.model.WantedModelDto;
 import org.mapstruct.Mapper;
 

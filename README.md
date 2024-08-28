@@ -7,6 +7,7 @@ Spring boot
 
 Spring JPA
 H2 in memory DB,
+or MariaDB
 
 Spring MVC
 Thymeleaf for UI
@@ -25,7 +26,8 @@ Thymeleaf for UI
 1. Run Docker (Docker Decktop for Win OS)
 2. Run artemis container: docker run --detach --name mycontainer -p 61616:61616 -p 8161:8161 --rm apache/activemq-artemis:latest-alpine
 3. Run project eurekareganddiscovery, check http://localhost:8761
-4. Run [CatalogApplication.java](src%2Fmain%2Fjava%2Forg%2Fdiecastfinder%2Fcatalog%2FCatalogApplication.java) .main().
+4. Run [WantedApplication.java](src%2Fmain%2Fjava%2Forg%2Fdiecastfinder%2Fwanted%2FWantedApplication.java) .main().
+5. Open main page of UI 
 
 ### Standalone in Docker
 

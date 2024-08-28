@@ -1,6 +1,6 @@
-package org.diecastfinder.wanted.bootstrap;
+package org.diecastfinder.wanted.repositories.bootstrap;
 
-import org.diecastfinder.wanted.domain.WantedModel;
+import org.diecastfinder.wanted.repositories.domain.WantedModel;
 import org.diecastfinder.wanted.repositories.WantedModelRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,8 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        WantedModel wm = WantedModel.builder()
+        if (repository.count() < 1) {
+            WantedModel wm = WantedModel.builder()
                 .name("Mercedes W196R stromliner")
                 .producer("CMC")
                 .maxPrice(2000)
@@ -24,9 +25,9 @@ public class BootStrapData implements CommandLineRunner {
                 .currency("PLN")
                 .build();
 
-        repository.save(wm);
+            repository.save(wm);
 
-        WantedModel wm2 = WantedModel.builder()
+            WantedModel wm2 = WantedModel.builder()
                 .name("Mercedes W196R stromliner")
                 .producer("GT Replicas")
                 .maxPrice(1000)
@@ -35,7 +36,8 @@ public class BootStrapData implements CommandLineRunner {
                 .active(true)
                 .build();
 
-        repository.save(wm2);
+            repository.save(wm2);
+        }
 
         System.out.println("Started in bootstrap");
         System.out.println("Number of models: " + repository.count());

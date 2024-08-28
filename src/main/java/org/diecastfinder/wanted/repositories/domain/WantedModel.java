@@ -1,4 +1,4 @@
-package org.diecastfinder.wanted.domain;
+package org.diecastfinder.wanted.repositories.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
