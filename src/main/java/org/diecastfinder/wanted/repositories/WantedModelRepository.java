@@ -1,6 +1,6 @@
 package org.diecastfinder.wanted.repositories;
 
-import org.diecastfinder.wanted.domain.WantedModel;
+import org.diecastfinder.wanted.repositories.domain.WantedModel;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

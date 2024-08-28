@@ -1,6 +1,6 @@
 package org.diecastfinder.wanted.web.ui.controllers;
 
-import org.diecastfinder.wanted.domain.WantedModel;
+import org.diecastfinder.wanted.repositories.domain.WantedModel;
 import org.diecastfinder.wanted.repositories.WantedModelRepository;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
