@@ -86,5 +86,4 @@ public class WantedUiController {
             .active(true)
             .build();
     }
-
 }
