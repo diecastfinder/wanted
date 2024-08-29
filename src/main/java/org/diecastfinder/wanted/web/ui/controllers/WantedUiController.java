@@ -32,19 +32,10 @@ public class WantedUiController {
     public String uploadCSV(@RequestParam("file") MultipartFile file, Model model) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
             String line;
-
             List<WantedModel> wantedModels = new LinkedList<>();
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
 
-                wantedModels.add(WantedModel.builder()
-                        .name(data[0])
-                        .producer(data[1])
-                        .minPrice(Integer.parseInt(data[2]))
-                        .maxPrice(Integer.parseInt(data[3]))
-                        .currency(data[4])
-                        .active(true)
-                        .build());
+            while ((line = reader.readLine()) != null) {
+                wantedModels.add(lineToWantedModel(line));
             }
             wantedModelRepository.deleteAll();
             wantedModelRepository.saveAll(wantedModels);
@@ -57,6 +48,43 @@ public class WantedUiController {
         model.addAttribute("message", "File uploaded successfully!");
         model.addAttribute("wantedModels", wantedModelRepository.findByActiveTrue());
         return "wantedmodels/list";
+    }
+
+    @RequestMapping("/upsert")
+    public String upsertCSV(@RequestParam("file") MultipartFile file, Model model) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
+            String line;
+            WantedModel wantedModel;
+
+            while ((line = reader.readLine()) != null) {
+                wantedModel = lineToWantedModel(line);
+
+                if (wantedModelRepository
+                        .findByNameAndProducer(wantedModel.getName(), wantedModel.getProducer())
+                        .isEmpty()) {
+                    wantedModelRepository.save(wantedModel);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("message", "An error occurred while processing the file.");
+            return "wantedmodels/list";
+        }
+        model.addAttribute("message", "File uploaded successfully!");
+        model.addAttribute("wantedModels", wantedModelRepository.findByActiveTrue());
+        return "wantedmodels/list";
+    }
+
+    private WantedModel lineToWantedModel(String line) {
+        String[] data = line.split(",");
+        return WantedModel.builder()
+            .name(data[0])
+            .producer(data[1])
+            .minPrice(Integer.parseInt(data[2]))
+            .maxPrice(Integer.parseInt(data[3]))
+            .currency(data[4])
+            .active(true)
+            .build();
     }
 
 }

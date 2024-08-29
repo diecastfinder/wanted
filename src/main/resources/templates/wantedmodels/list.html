@@ -38,7 +38,7 @@
         .hidden-input {
             display: none;
         }
-        .upload-button {
+        .button {
             background-color: #4CAF50;
             color: white;
             padding: 15px 32px;
@@ -52,7 +52,7 @@
             border-radius: 4px;
             transition: background-color 0.3s ease;
         }
-        .upload-button:hover {
+        .button:hover {
             background-color: #45a049;
         }
         .message {
@@ -60,22 +60,41 @@
             font-size: 16px;
             color: #555;
         }
+        .button-group {
+            display: flex;
+            justify-content: left;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
     <h1>Wanted Models</h1>
-    <form id="uploadForm" method="post" enctype="multipart/form-data" th:action="@{/upload}">
-        <input type="file" id="fileInput" name="file" accept=".csv" class="hidden-input" required />
-        <button type="button" id="uploadButton" class="upload-button">Clean Up & Upload</button>
-    </form>
+    <div class="button-group">
+        <form id="uploadForm" method="post" enctype="multipart/form-data" th:action="@{/upload}">
+            <input type="file" id="fileInputUpload" name="file" accept=".csv" class="hidden-input" required />
+            <button type="button" id="uploadButton" class="button">Clean Up & Upload All</button>
+        </form>
+        <form id="upsertForm" method="post" enctype="multipart/form-data" th:action="@{/upsert}">
+            <input type="file" id="fileInputUpsert" name="file" accept=".csv" class="hidden-input" required />
+            <button type="button" id="upsertButton" class="button">Upload Only New</button>
+        </form>
+    </div>
     <p th:text="${message}" class="message"></p>
     <script>
         document.getElementById('uploadButton').addEventListener('click', function() {
-            document.getElementById('fileInput').click();
+            document.getElementById('fileInputUpload').click();
         });
 
-        document.getElementById('fileInput').addEventListener('change', function() {
+        document.getElementById('fileInputUpload').addEventListener('change', function() {
             document.getElementById('uploadForm').submit();
+        });
+
+        document.getElementById('upsertButton').addEventListener('click', function() {
+            document.getElementById('fileInputUpsert').click();
+        });
+
+        document.getElementById('fileInputUpsert').addEventListener('change', function() {
+            document.getElementById('upsertForm').submit();
         });
     </script>
     <table>
