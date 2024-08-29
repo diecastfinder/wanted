@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface WantedModelRepository extends JpaRepository<WantedModel, UUID> {
     List<WantedModel> findByActiveTrue();
+    List<WantedModel> findByNameAndProducer(String name, String producer);
 }
