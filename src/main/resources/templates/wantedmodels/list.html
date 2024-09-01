@@ -78,6 +78,9 @@
             <input type="file" id="fileInputUpsert" name="file" accept=".csv" class="hidden-input" required />
             <button type="button" id="upsertButton" class="button">Upload Only New</button>
         </form>
+        <form th:action="@{/toCsv}" method="get">
+            <button type="submit" class="button">Find All & Download as CSV</button>
+        </form>
     </div>
     <p th:text="${message}" class="message"></p>
     <script>
