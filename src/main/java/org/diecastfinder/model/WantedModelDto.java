@@ -1,4 +1,4 @@
-package org.diecastfinder.wanted.web.model;
+package org.diecastfinder.model;
 
 import lombok.*;
 import lombok.experimental.Accessors;
