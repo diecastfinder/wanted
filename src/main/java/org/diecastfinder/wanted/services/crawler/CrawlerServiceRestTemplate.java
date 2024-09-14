@@ -42,12 +42,7 @@ public class CrawlerServiceRestTemplate implements CrawlerService {
 
         log.debug("Calling Crawler Service");
 
-        ////////////////
         HttpEntity<WantedModelDto> request = new HttpEntity<>(wanted, headers);
-
-//        List<FoundModelDto> result = restTemplate.postForObject(crawlerServiceHost + CRAWLER_PATH, request, List<FoundModelDto>.class);
-
-        //////////////////
 
         ResponseEntity<List<FoundModelDto>> response = restTemplate
             .exchange(crawlerServiceHost + CRAWLER_PATH, HttpMethod.POST, request,
