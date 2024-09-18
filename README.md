@@ -3,7 +3,9 @@
 The project that helps to manage list of desired models for collection.
 ## Project tech stack
 Java 17,
-Spring boot
+Spring boot,
+RestTemplate,
+Circuit Breaker
 
 Spring JPA
 H2 in memory DB,
@@ -17,6 +19,9 @@ Thymeleaf for UI
 * Repositories (JPA/Hibernate) for working with DB
 * Mapstruct to convert POJOs between domain (DB) model and API model.
 * Message queue: ActiveMQ
+
+## Testing
+* PACT consumer contract test
 
 ## Configuration in IntelliJ
 1. Add "local-discovery" to Active profiles
