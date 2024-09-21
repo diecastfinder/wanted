@@ -1,5 +1,6 @@
 package org.diecastfinder.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -34,5 +35,10 @@ public class WantedModelDto {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @SneakyThrows
+    public String asJsonString() {
+        return new ObjectMapper().writeValueAsString(this);
     }
 }
