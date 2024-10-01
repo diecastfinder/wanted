@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: Wanted app's API
+  version: 1.0.0
+  description: API for managing wanted models
+
+servers:
+  - url: https://localhost:8082
+
+paths:
+  /api/v1/wanted/{id}:
+    get:
+      summary: Get wanted model by ID
+      operationId: getWantedModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: UUID of the wanted model
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successfully retrieved wanted model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WantedModelDto'
+        '404':
+          description: Wanted model not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: "Model not found."
+
+    put:
+      summary: Update wanted model by ID
+      operationId: updateWantedModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: UUID of the wanted model
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WantedModelDto'
+      responses:
+        '200':
+          description: Successfully updated the wanted model
+        '404':
+          description: Wanted model not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: "Model not found."
+
+    delete:
+      summary: Delete wanted model by ID
+      operationId: deleteWantedModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: UUID of the wanted model
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successfully deleted the wanted model
+        '404':
+          description: Wanted model not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: "Model not found."
+
+  /api/v1/wanted:
+    post:
+      summary: Create a new wanted model
+      operationId: saveWantedModel
+      requestBody:
+        description: A model to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WantedModelDto'
+      responses:
+        '201':
+          description: Successfully created the wanted model
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: "Invalid data provided."
+
+components:
+  schemas:
+    WantedModelDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: The name of the model wanted for collection.
+          example: "McLaren MP"
+        producer:
+          type: string
+          description: The producer or manufacturer of the item.
+          example: "Minishamps"
+        minPrice:
+          type: integer
+          description: The minimum price for the item expected to pay.
+          example: 200
+        maxPrice:
+          type: integer
+          description: The maximum price for the item expected to pay.
+          example: 700
+        currency:
+          type: string
+          description: The currency for the price (e.g., USD, EUR, PLN, etc).
+          example: "PLN"
+        active:
+          type: boolean
+          description: Flag if model is still needed.
+          example: true
+      required:
+        - name
+        - producer
+        - minPrice
+        - maxPrice
+        - currency
+        - active
